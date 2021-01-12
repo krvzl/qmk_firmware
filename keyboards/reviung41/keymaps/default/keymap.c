@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   
   [_RAISE] = LAYOUT_reviung41(
-    _______,         KC_F1,    KC_F2,    KC_F3,    KC_F4,     _______,            KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_DEL,
+    _______,         KC_F1,    KC_F2,    KC_F3,    KC_F4,     _______,            KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_LEAD,
     _______,         KC_F5,    KC_F6,    KC_F7,    KC_F8,     _______,            KC_F1,    KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_F6,
     _______,         KC_F9,    KC_F10,   KC_F11,   KC_F12,    _______,            KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,
                                                    _______,   _______,  _______,  _______,  KC_RGUI
@@ -60,3 +60,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
+LEADER_EXTERNS();
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+    // Replace the sequences below with your own sequences.
+    SEQ_ONE_KEY(KC_LEFT) {
+      // firefox tab left
+      tap_code16(C(KC_PGUP));
+    }
+    SEQ_ONE_KEY(KC_DOWN) {
+        //firefox tab right
+        tap_code16(C(KC_PGDN));
+    // Note: This is not an array, you don't need to put any commas
+    // or semicolons between sequences.
+    //SEQ_TWO_KEYS(KC_N, KC_T) {
+      // When I press KC_LEAD and then N followed by T, this sends CTRL + T
+      //SEND_STRING(SS_LCTRL("t"));
+    }
+  }
+}
