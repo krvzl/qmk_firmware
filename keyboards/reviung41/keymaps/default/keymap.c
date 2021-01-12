@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = LAYOUT_reviung41(
     KC_0,            KC_1,     KC_2,     KC_3,     KC_3,      KC_PERC,            KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_DEL,
     _______,         KC_4,     KC_5,     KC_6,     KC_6,      KC_PIPE,            KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_GRV,   KC_TILD,
-    _______,         KC_7,     KC_8,     KC_9,     KC_9,      KC_DQUO,            KC_HOME,  KC_END,   KC_PGUP,  KC_PGDN,  KC_PSCR,  RSFT_T(KC_SPC),
+    _______,         KC_7,     KC_8,     KC_9,     KC_9,      KC_DQUO,            KC_HOME,  KC_END,   KC_PGUP,  KC_PGDN,  KC_PSCR,  KC_ENT,
                                                    _______,   _______,  _______,  _______,  _______
   ),
   
@@ -73,11 +73,12 @@ void matrix_scan_user(void) {
     SEQ_ONE_KEY(KC_DOWN) {
         //firefox tab right
         tap_code16(C(KC_PGDN));
+    }
     // Note: This is not an array, you don't need to put any commas
     // or semicolons between sequences.
     //SEQ_TWO_KEYS(KC_N, KC_T) {
       // When I press KC_LEAD and then N followed by T, this sends CTRL + T
       //SEND_STRING(SS_LCTRL("t"));
-    }
+    //}
   }
 }
